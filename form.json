@@ -1,0 +1,23 @@
+{
+    "title": "Contact Form",
+    "fields": [
+    {
+        "type": "text",
+        "label": "Name",
+        "name": "name",
+        "required": true
+    },
+    {
+        "type": "email",
+        "label": "email",
+        "name": "email",
+        "required": true
+    },
+    {
+        "type": "textarea",
+        "label": "message",
+        "name": "message",
+        "required": false
+    }
+]
+}
