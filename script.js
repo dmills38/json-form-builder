@@ -9,6 +9,7 @@ fetch("form.json") // gets the JSON file
         // Loop through each field in the JSON data and create corresponding form elements
         data.fields.forEach(field => {
             const label = document.createElement("label");
+            label.textContent = field.label;
 
             let input;
 
@@ -33,4 +34,22 @@ fetch("form.json") // gets the JSON file
         })
 
         const button = document.createElement("button");
+        button.textContent = "Submit";
+
+        form.appendChild(button);
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault(); // Prevent the default form submission behavior
+
+            const formData = {};
+
+            data.fields.forEach(field => {
+
+                const value = document.getElementById(field.id).value;
+                formData[field.id] = value;
+            })
+
+            console.log(formData); // Log the form data to the console
+        })
+
     })
