@@ -35,6 +35,7 @@ fetch("form.json") // gets the JSON file
 
         const button = document.createElement("button");
         button.textContent = "Submit";
+        button.type = "submit";
 
         form.appendChild(button);
 
