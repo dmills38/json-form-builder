@@ -30,7 +30,7 @@ fetch("form.json") // gets the JSON file
 
             const error = document.createElement("small");
             error.id = `${field.id}-error`;
-            
+
             form.appendChild(error);
 
             form.appendChild(document.createElement("br"));
@@ -57,14 +57,18 @@ fetch("form.json") // gets the JSON file
 
                 const inputEl = document.getElementById(field.id);
 
+                const errorEl = document.getElementById(`${field.id}-error`);
+
                 if (field.required && value.trim() === "") {
 
                     inputEl.style.border = "2px solid red"; // Highlight the input field with a red border
+                    errorEl.textContent = `${field.label} is required.`; // Display an error message
                     isValid = false; // Set the flag to false if any required field is empty
                     
                 } else {
 
                     inputEl.style.border = ""; // Reset the border if the field is valid
+                    errorEl.textContent = ""; // Clear any previous error message
                     formData[field.id] = value; // Store the value in formData if valid
                     
                 }
