@@ -30,6 +30,7 @@ fetch("form.json") // gets the JSON file
 
             const error = document.createElement("small");
             error.id = `${field.id}-error`;
+            error.style.color = "red"; // Set the error message color to red
 
             form.appendChild(error);
 
