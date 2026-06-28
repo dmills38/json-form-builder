@@ -28,6 +28,11 @@ fetch("form.json") // gets the JSON file
 
             form.appendChild(input);
 
+            const error = document.createElement("small");
+            error.id = `${field.id}-error`;
+            
+            form.appendChild(error);
+
             form.appendChild(document.createElement("br"));
 
             form.appendChild(document.createElement("br"));
@@ -44,11 +49,32 @@ fetch("form.json") // gets the JSON file
 
             const formData = {};
 
+            let isValid = true; // Flag to track overall form validity
+
             data.fields.forEach(field => {
 
                 const value = document.getElementById(field.id).value;
-                formData[field.id] = value;
+
+                const inputEl = document.getElementById(field.id);
+
+                if (field.required && value.trim() === "") {
+
+                    inputEl.style.border = "2px solid red"; // Highlight the input field with a red border
+                    isValid = false; // Set the flag to false if any required field is empty
+                    
+                } else {
+
+                    inputEl.style.border = ""; // Reset the border if the field is valid
+                    formData[field.id] = value; // Store the value in formData if valid
+                    
+                }
+
             })
+
+            if (!isValid) {
+                    console.log("Please fill in all required fields."); // Log a message if any required field is empty
+                    return; // Exit the function early if any required field is empty
+                }
 
             console.log(formData); // Log the form data to the console
         })
